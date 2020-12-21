@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+	<script src="js/path.js"></script>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+    </script>
+	<style>
+		.row1 > div{
+			/* ''''''''''''''''''''''''''''height: 13rem;'''''''''''''''''''''''''''' */
+			height: 12.8rem;
+			/* height: 6.5rem; */
+			padding: 2px 2px;
+			margin-top: 4px;
+		}
+		
+		.row1 > .mui-col-xs-4{
+			padding-top: 0px;
+			padding-bottom: 5px;
+		}
+		.img11{
+			width: 100%;
+			height: 100%;
+			border-radius: 10px 10px 10px 10px;
+			border: 2px solid green;
+			background-color: white;
+		}
+		.img11one{
+			width: 100%;
+			height: 65%;
+			border-radius: 10px 10px 0px 0px;
+		}
+		
+		.mui-col-sm-2{
+			/* width:12%; */
+			width:16.25%;
+			margin: 0.2% 0.2%;
+		}
+		
+		.img11text1{
+			height:2rem;
+			
+		}
+		.text111{
+			font-size: 0.8rem;
+			 height: 1.2rem;
+			 text-align: left; 
+			 line-height: 1.2rem;
+			 padding-left: 5%;
+		}
+		
+	</style>
+</head>
+<!--  style="overflow-y:hidden"  -->
+<body >
+		
+		
+		<div class="mui-header" style="padding-top: 1%;background-color: white; padding-bottom: 0px;">
+		<div class="mui-row" style="text-align: center;">
+			<div class="mui-col-sm-4 mui-col-xs-8">
+				<!-- <div style="float: left;width:40%;">
+					<input  type="button" id="tts_btn" onclick="doTTS()" value="播放">
+				</div>
+				<div id="bdtts_div_id" style="float: left; width:30%">
+					
+				</div> -->
+				<img src="img/logo1.png" id="img1" style="height: 100%;width: 5rem; ">
+				<div style="clear: both;"></div>
+			</div>
+			<div class="mui-col-sm-4 mui-col-xs-8">
+				
+				(<span id="header"></span>)今日温度:<span id="message"></span><br/>
+				
+				<span id="time"></span>
+				
+			</div>
+			
+			<div class="mui-col-sm-2 mui-col-xs-4" style="font-size: 1rem;">
+				<img id="img" src="" style="width: 20%;height: 20%;vertical-align:top">
+				<span id="imgtext1"></span><br/>(今天)
+					
+			</div>
+			<div class="mui-col-sm-2 mui-col-xs-4" style="font-size: 1rem;">
+				<img id="img2" src="" style="width: 20%;height: 20%;vertical-align:top">
+				<span id="imgtext2"></span><br/>(明天)
+					
+			</div>
+		</div>
+		<div  class="mui-content"  style="background-color: white; margin-top: 0%;padding-top: 0px; background-image: url(img/back.jpg); background-repeat:no-repeat;background-size:100% 100%;height:40rem ">
+			<div class="mui-row row1" style="text-align: center;" id="content1">
+				<div id="device" style="margin-top: 40%;opacity: 0.3; text-align: center;"></div>
+			</div>
+			
+			
+		</div>
+		</div>	
+</body>
+
+
+<script>
+	
+	mui.plusReady(function(){
+		
+		
+		
+		var mainActivity = plus.android.runtimeMainActivity();
+		var Settings = plus.android.importClass("android.provider.Settings");
+		plus.navigator.setFullscreen(true);
+		if (mui.os.android) {
+		plus.screen.lockOrientation("landscape-primary");
+		}
+		//alert("a"+$device);
+		//获取uuid
+		plus.device.getInfo({  
+			   success:function(e){  
+					//弹框uuid
+					 
+					  //alert(e.uuid);
+					  //showMsg("设备号:"+e.uuid);
+						
+					   	
+						
+					  $device=e.uuid;
+					  //$device = "94E0d605b066";
+					  
+					  
+					  var device =  document.getElementById("device");
+					  device.innerHTML = "设备号:"+$device;
+					  
+					  
+					
+					 
+					  
+  					  					  
+					  //$device="111112";
+					  var url = $requestUrl+"appSysEquipment/file/findone?equipmentNo="+$device;
+					   mui.getJSON(url,function (data1) {
+						 $pageSize = data1.data.showCount;
+						 
+						 
+						 var img1 = document.getElementById("img1");
+						 img1.src=$imageUrl+"uploadImages/"+data1.data.imgUrl;
+						 loadData();
+						  
+					   });
+					 
+
+				},  
+				fail:function(){  
+					 showMsg("获取硬件标识失败，请同意软件获取设备信息后重新打开应用");  
+			   }  
+		 });
+				
+		
+		function getXYbyIP() {
+		var url="http://api.map.baidu.com/location/ip?ak=HQi0eHpVOLlRuIFlsTZNGlYvqLO56un3&coor=bd09ll";
+	    mui.getJSON(url,function (data1) {
+		        //console.log(data)
+				//alert(data1.content.address_detail.city);
+				//alert(data1.content.point.x+","+data1.content.point.y);
+				mui.getJSON('http://api.map.baidu.com/telematics/v3/weather?location=' +data1.content.point.x+","+data1.content.point.y+ '&output=json&ak=z3hc18DC7zkuwqEWpWsEkZAi', {category: 'news'},
+				 function(data1) {
+									
+								// console.log(JSON.stringify(data1));
+								
+								
+								var header = document.getElementById("header");
+								var message = document.getElementById("message");
+								var img = document.getElementById("img");
+								var imgtext1 = document.getElementById("imgtext1");
+								var img2 = document.getElementById("img2");
+								var imgtext2 = document.getElementById("imgtext2");
+								
+								header.innerHTML = data1.results[0].currentCity;
+								console.log(data1.results[0].weather_data[0].date);
+								img.src = data1.results[0].weather_data[0].dayPictureUrl;
+								imgtext1.innerHTML = data1.results[0].weather_data[0].weather;
+								img2.src = data1.results[0].weather_data[1].dayPictureUrl;
+								imgtext2.innerHTML = data1.results[0].weather_data[1].weather;
+								
+								message.innerHTML =data1.results[0].weather_data[0].temperature;
+								
+								 
+							},function(e){
+								
+							});
+				
+		        
+		    },function (data) {
+		    }
+		);
+		}
+		
+		
+		//下载图片到本地
+		// var imageUrl = "http://129.204.214.141/uploadImages/1592187829875.jpg";
+		// var imgDtask = plus.downloader.createDownload(imageUrl,{method:'GET'}, function (d,status) {
+		// 		if(status == 200){
+					
+		// 				plus.io.resolveLocalFileSystemURL(d.filename, function (enpty) {
+		// 				   localStorage.setItem("img2",enpty.toLocalURL());
+						 
+		// 				});
+		// 		}else{
+		// 			mui.toast('保存失败')
+		// 		}
+		// });
+		// imgDtask.start()
+		
+		
+		
+		
+		
+		//读取本地文件
+		var img1 = document.getElementById("img1");
+		
+		//alert(localStorage.getItem("img2"));
+		plus.io.resolveLocalFileSystemURL(localStorage.getItem("img2"), function(entry1) {  
+			var path = entry1.toLocalURL();  
+			//img1.src  = path;
+		}, function(e) {  
+			mui.toast("读取拍照文件错误：" + e.message);  
+		});  
+		//结束
+		
+		var ttsText="草莓12.50元/斤,西瓜2.30元/斤,香蕉3.00元/斤,火龙果12.00元/斤";
+		
+		
+		
+		
+		
+		
+		
+		// var audio = document.createElement("audio");  
+		// audio.src = 'http://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&per=3&spd=3&text=' + ttsText +"'";  
+		// audio.play(); 
+		
+		//ttsText="test1";
+	//	var sound1 = 'http://tts.baidu.com/text2audio.mp3?lan=zh&ie=UTF-8&per=3&spd=3&text=' + ttsText;
+		
+		
+		
+		
+		
+	// 	s = plus.audio.createPlayer( 'http://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&per=3&spd=3&text=' + ttsText +"'");
+	// 	var num = s.getDuration();//获取音频总长度number
+	
+	 
+	// 	s.play( function () {//播放完成回调
+	// 	    alert( "Audio play success!" ); 
+	// 	}, function ( e ) {//失败回调
+	// 	    alert( "Audio play error: " + e.message ); 
+	// 	} ); 		
+	
+	
+		
+		
+		
+		
+		getXYbyIP();
+		setInterval(function(){getXYbyIP();},7200000);
+		
+		
+		
+		
+		
+	});
+	
+	
+	
+	var pageCount = 1;
+	
+	
+	function download(sound1,keys){
+		var imgDtask3 = plus.downloader.createDownload(sound1,{method:'GET'}, function (d,status) {
+			   // alert(d.filename);
+				if(status == 200){				
+				plus.io.resolveLocalFileSystemURL(d.filename, function (enpty) {
+				
+				   //mui.toast(enpty.toLocalURL());  
+				   localStorage.setItem(keys,enpty.toLocalURL());
+				  // mui.toast("test"+localStorage.getItem(keys));
+				   
+			
+				}, function(e) {  
+						alert("读取拍照文件错误：" + e.message);  
+				});
+		
+					
+				}else{
+					alert('保存失败');
+				}
+		});
+		imgDtask3.start();
+	}
+	
+	var show='0';
+	
+	function loadData(){
+		
+		var equipmentNo = $device;
+		var pageSize= $pageSize;
+		var pageNumber = pageCount;
+		
+		
+		// if(show=='0'){
+		// 	mui.toast("设备号:"+$device);
+		// }else{
+		// 	show="1";
+		// }
+		
+	//	alert($device);
+		
+		
+		mui.ajax($requestUrl+"appSysEquipment/file/findAll?equipmentNo="+equipmentNo+"&pageSize="+pageSize+"&pageNumber="+pageNumber,{
+			dataType:'json',//服务器返回json格式数据
+			type:'get',//HTTP请求类型
+			timeout:10000,//超时时间设置为10秒；
+			headers:{'Content-Type':'application/json'},	              
+			success:function(data){
+				//alert(data);
+				var str1="";
+				document.getElementById("content1").innerHTML="";
+				
+				
+				
+				
+				
+				
+				
+				
+				// for(var i=0;i<data.data.length;i++){
+				// 	setTimeout(download($imageUrl+"uploadImages/"+data.data[i].fileId,pageCount+"img"+i),(i+1)*1000);
+				// }
+				
+				
+				
+				
+				//mui.toast(pageNumber);
+				
+				
+				
+				
+				
+				//localStorage.setItem("asdfaefee/122/1597336319466.JPG","1212");
+				//alert(localStorage.getItem("asdfaefee/122/1597336319466.JPG"));
+				
+				
+				
+				for(var i=0;i<data.data.length;i++){
+					
+					
+					
+			//	mui.toast("sa"+localStorage.getItem(pageCount+"img"+i));
+				
+				if(localStorage.getItem(pageCount+"img"+i+"/"+data.data[i].fileId)==null || localStorage.getItem(pageCount+"img"+i+"/"+data.data[i].fileId)==""){
+					setTimeout(download($imageUrl+"uploadImages/"+data.data[i].fileId,pageCount+"img"+i+"/"+data.data[i].fileId),1000*(i+1));	
+					data.data[i].fileId  = $imageUrl+"uploadImages/"+data.data[i].fileId;
+					//mui.toast("线上"+data.data[i].fileId);	
+					
+				}else{
+					data.data[i].fileId  = localStorage.getItem(pageCount+"img"+i+"/"+data.data[i].fileId);
+					//mui.toast("线下"+data.data[i].fileId);	
+				}
+					
+			//	mui.toast("sa"+localStorage.getItem(pageCount+"img"+i+"/"+data.data[i].fileId));	
+					
+					
+				var style1="";	
+				if($pageSize=='24'){
+					style1="12.1%";
+				}else{
+					style1="16.25%";
+					//document.getElementsByClassName("test11").style.width="16.25%";
+				}
+				
+				
+				
+				str1+='<div class="mui-col-sm-2   mui-col-xs-4 "  style="width:'+style1+'">';
+				str1+='<div class="img11">';
+				
+				//mui.toast($imageUrl+"uploadImages/"+data.data[i].fileId);
+				str1+='<img src="'+data.data[i].fileId+'" class="img11one">';
+				str1+='<div class="img11text1" style="font-size: 1.2rem;height: 1.4rem;">'+data.data[i].name+'</div>';
+				
+				
+				if(data.data[i].price1==""){
+					data.data[i].price1="--";
+					str1+='<div class="mui-row img11text1 text111 "><div class="mui-col-sm-3 mui-col-xs-3" >价格</div><div class="mui-col-sm-9 mui-col-xs-9" style="color: green; text-align: right; padding-right: 4%;"><span style="font-size: 1.2rem; width:30%;">'+data.data[i].price+'</span>元/斤</div></div>';
+				}else{
+					str1+='<div class="mui-row img11text1 text111 "><div class="mui-col-sm-3 mui-col-xs-3" >价格</div><div class="mui-col-sm-9 mui-col-xs-9" style="color: green; text-align: right; padding-right: 4%;"><span style="font-size: 1.2rem; width:30%;text-decoration:line-through;text-decoration-color: #000000;">'+data.data[i].price+'</span>元/斤</div></div>	';
+					
+				}
+				
+				
+				
+				str1+='<div class="mui-row img11text1 text111"><div class="mui-col-sm-3 mui-col-xs-3">特价</div><div class="mui-col-sm-9 mui-col-xs-9" style="color: red;text-align: right; padding-right: 4%;"><span style="font-size: 1.2rem;width:30%">'+data.data[i].price1+'</span>元/斤</div></div>';	
+				str1+='</div>';
+				str1+='</div>';
+	
+				};
+				
+				document.getElementById("content1").innerHTML = str1;
+				
+				//alert(document.getElementsByClassName("test11").style);
+			
+			
+				//mui.toast(str1);
+				
+				//var  sound1=$imageUrl+"sound/1597488740677.mp3";
+				var  sound1= $imageUrl+"uploadImages/"+data.message;
+				
+				
+				
+				
+				var imageUrl1 = "http://129.204.214.141/uploadImages/1592187829875.jpg";
+				
+				
+			    
+				
+		
+		
+				//alert(sound1);
+						
+				var name="text2audio.mp3";
+				var imgDtask1 = plus.downloader.createDownload(sound1,{method:'GET'}, function (d,status) {
+					   // alert(d.filename);
+						if(status == 200){				
+						plus.io.resolveLocalFileSystemURL(d.filename, function (enpty) {
+						 var audio = document.createElement("audio");
+						   audio.src = enpty.toLocalURL();  
+						   audio.play(); 
+						   
+						   
+						   //if(localStorage.getItem("sound"+pageCount)=='' ||localStorage.getItem("sound"+pageCount)==undefined){}
+						   localStorage.setItem("sound"+pageCount,enpty.toLocalURL())
+						   
+						   audio.addEventListener('ended', function () {  
+							   if(data.page.pageCount-pageCount>0){
+								   pageCount++;
+								   setTimeout(loadData,3000);
+								   
+							   }else{
+								    pageCount=1;
+								   //alert("播放完毕");
+								   setTimeout(loadData,3000);
+							   }
+						   }, false);
+						   
+						}, function(e) {  
+								alert("读取拍照文件错误：" + e.message);  
+						});
+				
+							
+						}else{
+							alert('保存失败');
+						}
+				});
+				
+				//mui.toast("message"+data.message);
+				
+				if(data.message==""){
+					//mui.toast("本地测试");
+					  var audio = document.createElement("audio");
+					  audio.src = localStorage.getItem("sound"+pageCount);  
+					  audio.play(); 
+					  audio.addEventListener('ended', function () {
+						   if(data.page.pageCount-pageCount>0){
+							   pageCount++;
+							   setTimeout(loadData,3000);
+							   
+						   }else{
+								pageCount=1;
+							   //alert("播放完毕");
+							   setTimeout(loadData,3000);
+						   }
+					  }, false);
+				}else{
+					//mui.toast("更新测试");
+					imgDtask1.start();
+				}
+				
+				// if(localStorage.getItem("sound"+pageCount)=='' ||localStorage.getItem("sound"+pageCount)==undefined){ 
+				// 	 alert("one");
+				// 	 imgDtask1.start();
+				// }else{
+				// 	 alert("two");
+					
+				// }
+				
+				
+				
+				
+			},
+			error:function(xhr,type,errorThrown){
+				//异常处理；
+				console.log(type);
+			}
+		});
+		
+		
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	function getDate(){
+	
+	   var myDate = new Date();
+	
+		//获取当前年
+	   var year = myDate.getFullYear();
+	
+	   //获取当前月
+	   var month = myDate.getMonth() + 1;
+	
+		//获取当前日
+		var date = myDate.getDate();
+		var h = myDate.getHours(); //获取当前小时数(0-23)
+		var m = myDate.getMinutes(); //获取当前分钟数(0-59)
+		var s = myDate.getSeconds();
+		
+		var myddy=myDate.getDay();//获取存储当前日期
+		  var weekday=["星期日","星期一","星期二","星期三","星期四","星期五","星期六"];
+		 
+	
+	   //获取当前时间
+	
+	   var now = year + '-' + conver(month) + "-" + conver(date) + " " + conver(h) + ':' + conver(m) + ":" + conver(s);
+	   
+	   document.getElementById("time").innerHTML =weekday[myddy]+" "+ now;
+	   
+	
+	}
+	
+		//日期时间处理
+	function conver(s) {
+		return s < 10 ? '0' + s : s;
+	}
+	
+	setInterval(function(){getDate();},1000);
+	
+	
+	function doTTS() {
+	}   
+
+</script>
+</html>

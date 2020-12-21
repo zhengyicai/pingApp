@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+    </script>
+	<style>
+		.row1 div{
+			/* ''''''''''''''''''''''''''''height: 13rem;'''''''''''''''''''''''''''' */
+			height: 12.8rem;
+			/* height: 6.5rem; */
+			padding: 2px 2px;
+			margin-top: 4px;
+		}
+		
+		.row1 > .mui-col-xs-4{
+			padding-top: 0px;
+			padding-bottom: 5px;
+		}
+		.img11{
+			width: 100%;
+			height: 100%;
+			border-radius: 5px 5px 5px 5px;
+			border: 2px solid green;
+		}
+		.img11one{
+			width: 100%;
+			height: 85%;
+		}
+		.img11text{
+			margin-top: -0%;
+			color: #000000;
+			 height:15%;
+			font-weight: bold;
+			line-height: 1rem;
+			font-size: 0.8rem;
+		}
+		.mui-col-sm-2{
+			width:12.5%;
+		}
+		
+	</style>
+</head>
+<body  style="overflow-y:hidden" >
+		
+		
+		<div class="mui-header" style="padding-top: 1%;background-color: white; padding-bottom: 0px;">
+		<div class="mui-row" style="text-align: center;">
+			<div class="mui-col-sm-4 mui-col-xs-8">
+				<!-- <div style="float: left;width:40%;">
+					<input  type="button" id="tts_btn" onclick="doTTS()" value="播放">
+				</div>
+				<div id="bdtts_div_id" style="float: left; width:30%">
+					
+				</div> -->
+				<img src="css/1111.png" id="img1" style="height: 100%;width: 4rem; ">
+				<div style="clear: both;"></div>
+			</div>
+			<div class="mui-col-sm-4 mui-col-xs-8">
+				
+				(<span id="header"></span>)今日温度:<span id="message"></span><br/>
+				
+				<span id="time"></span>
+			</div>
+			
+			<div class="mui-col-sm-2 mui-col-xs-4" style="font-size: 1rem;">
+				<img id="img" src="" style="width: 20%;height: 20%;vertical-align:top">
+				<span id="imgtext1"></span><br/>(今天)
+					
+			</div>
+			<div class="mui-col-sm-2 mui-col-xs-4" style="font-size: 1rem;">
+				<img id="img2" src="" style="width: 20%;height: 20%;vertical-align:top">
+				<span id="imgtext2"></span><br/>(明天)
+					
+			</div>
+		</div>
+		<div  class="mui-header"  style="background-color: white; margin-top: 0%;padding-top: 0px; ">
+			<div class="mui-row row1" style="text-align: center;">
+				
+				<div class="mui-col-sm-2 mui-col-xs-4">
+					<div class="img11">
+					<img src="css/1114.png" class="img11one">
+					<h5 class="img11text mui-row"><div style="float: left; text-align: left;padding-left:2%" class="mui-col-sm-4" >草莓</div><div style="float: left;font-size:1.25rem;color:green" class="mui-col-sm-4" >12.00</div><div style="float: left;text-align:right" class="mui-col-sm-4" >元/斤</div><div style="clear: both;"></div></h5>
+					</div>
+				</div>
+				<div class="mui-col-sm-2 mui-col-xs-4">
+					<div class="img11">
+					<img src="css/1114.png" class="img11one">
+					<h5 class="img11text mui-row"><div style="float: left; text-align: left;padding-left:2%" class="mui-col-sm-4" >西瓜</div><div style="float: left;font-size:1.25rem;color:green" class="mui-col-sm-4" >2.00</div><div style="float: left;text-align:right" class="mui-col-sm-4" >元/斤</div><div style="clear: both;"></div></h5>
+					</div>
+				</div>
+				<div class="mui-col-sm-2 mui-col-xs-4">
+					<div class="img11">
+					<img src="css/1114.png" class="img11one">
+					<h5 class="img11text mui-row"><div style="float: left; text-align: left;padding-left:2%" class="mui-col-sm-4" >香蕉</div><div style="float: left;font-size:1.25rem;color:green" class="mui-col-sm-4" >3.00</div><div style="float: left;text-align:right" class="mui-col-sm-4" >元/斤</div><div style="clear: both;"></div></h5>
+					</div>
+				</div>
+				<div class="mui-col-sm-2 mui-col-xs-4">
+					<div class="img11">
+					<img src="css/1114.png" class="img11one">
+					<h5 class="img11text mui-row"><div style="float: left; text-align: left;padding-left:2%" class="mui-col-sm-4" >火龙果</div><div style="float: left;font-size:1.25rem;color:green" class="mui-col-sm-4" >12.00</div><div style="float: left;text-align:right" class="mui-col-sm-4" >元/斤</div><div style="clear: both;"></div></h5>
+					</div>
+				</div>
+				<div class="mui-col-sm-2 mui-col-xs-4">
+					<div class="img11">
+					<img src="css/1114.png" class="img11one">
+					<h5 class="img11text mui-row"><div style="float: left; text-align: left;padding-left:2%" class="mui-col-sm-4" >草莓</div><div style="float: left;font-size:1.25rem;color:green" class="mui-col-sm-4" >112.00</div><div style="float: left;text-align:right" class="mui-col-sm-4" >元/斤</div><div style="clear: both;"></div></h5>
+					</div>
+				</div>
+				<div class="mui-col-sm-2 mui-col-xs-4">
+					<div class="img11">
+					<img src="css/1114.png" class="img11one">
+					<h5 class="img11text mui-row"><div style="float: left; text-align: left;padding-left:2%" class="mui-col-sm-4" >草莓</div><div style="float: left;font-size:1.25rem;color:green" class="mui-col-sm-4" >112.00</div><div style="float: left;text-align:right" class="mui-col-sm-4" >元/斤</div><div style="clear: both;"></div></h5>
+					</div>
+				</div>
+				<div class="mui-col-sm-2 mui-col-xs-4">
+					<div class="img11">
+					<img src="css/1114.png" class="img11one">
+					<h5 class="img11text mui-row"><div style="float: left; text-align: left;padding-left:2%" class="mui-col-sm-4" >草莓</div><div style="float: left;font-size:1.25rem;color:green" class="mui-col-sm-4" >112.00</div><div style="float: left;text-align:right" class="mui-col-sm-4" >元/斤</div><div style="clear: both;"></div></h5>
+					</div>
+				</div>
+				<div class="mui-col-sm-2 mui-col-xs-4">
+					<div class="img11">
+					<img src="css/1114.png" class="img11one">
+					<h5 class="img11text mui-row"><div style="float: left; text-align: left;padding-left:2%" class="mui-col-sm-4" >草莓</div><div style="float: left;font-size:1.25rem;color:green" class="mui-col-sm-4" >112.00</div><div style="float: left;text-align:right" class="mui-col-sm-4" >元/斤</div><div style="clear: both;"></div></h5>
+					</div>
+				</div>
+				<div class="mui-col-sm-2 mui-col-xs-4">
+					<div class="img11">
+					<img src="css/1114.png" class="img11one">
+					<h5 class="img11text mui-row"><div style="float: left; text-align: left;padding-left:2%" class="mui-col-sm-4" >草莓</div><div style="float: left;font-size:1.25rem;color:green" class="mui-col-sm-4" >112.00</div><div style="float: left;text-align:right" class="mui-col-sm-4" >元/斤</div><div style="clear: both;"></div></h5>
+					</div>
+				</div>
+				<div class="mui-col-sm-2 mui-col-xs-4">
+					<div class="img11">
+					<img src="css/1114.png" class="img11one">
+					<h5 class="img11text mui-row"><div style="float: left; text-align: left;padding-left:2%" class="mui-col-sm-4" >草莓</div><div style="float: left;font-size:1.25rem;color:green" class="mui-col-sm-4" >112.00</div><div style="float: left;text-align:right" class="mui-col-sm-4" >元/斤</div><div style="clear: both;"></div></h5>
+					</div>
+				</div>
+				<div class="mui-col-sm-2 mui-col-xs-4">
+					<div class="img11">
+					<img src="css/1114.png" class="img11one">
+					<h5 class="img11text mui-row"><div style="float: left; text-align: left;padding-left:2%" class="mui-col-sm-4" >草莓</div><div style="float: left;font-size:1.25rem;color:green" class="mui-col-sm-4" >112.00</div><div style="float: left;text-align:right" class="mui-col-sm-4" >元/斤</div><div style="clear: both;"></div></h5>
+					</div>
+				</div>
+				<div class="mui-col-sm-2 mui-col-xs-4">
+					<div class="img11">
+					<img src="css/1114.png" class="img11one">
+					<h5 class="img11text mui-row"><div style="float: left; text-align: left;padding-left:2%" class="mui-col-sm-4" >草莓</div><div style="float: left;font-size:1.25rem;color:green" class="mui-col-sm-4" >112.00</div><div style="float: left;text-align:right" class="mui-col-sm-4" >元/斤</div><div style="clear: both;"></div></h5>
+					</div>
+				</div>
+				<div class="mui-col-sm-2 mui-col-xs-4">
+					<div class="img11">
+					<img src="css/1114.png" class="img11one">
+					<h5 class="img11text mui-row"><div style="float: left; text-align: left;padding-left:2%" class="mui-col-sm-4" >草莓</div><div style="float: left;font-size:1.25rem;color:green" class="mui-col-sm-4" >112.00</div><div style="float: left;text-align:right" class="mui-col-sm-4" >元/斤</div><div style="clear: both;"></div></h5>
+					</div>
+				</div>
+				<div class="mui-col-sm-2 mui-col-xs-4">
+					<div class="img11">
+					<img src="css/1114.png" class="img11one">
+					<h5 class="img11text mui-row"><div style="float: left; text-align: left;padding-left:2%" class="mui-col-sm-4" >草莓</div><div style="float: left;font-size:1.25rem;color:green" class="mui-col-sm-4" >112.00</div><div style="float: left;text-align:right" class="mui-col-sm-4" >元/斤</div><div style="clear: both;"></div></h5>
+					</div>
+				</div>
+				<div class="mui-col-sm-2 mui-col-xs-4">
+					<div class="img11">
+					<img src="css/1114.png" class="img11one">
+					<h5 class="img11text mui-row"><div style="float: left; text-align: left;padding-left:2%" class="mui-col-sm-4" >草莓</div><div style="float: left;font-size:1.25rem;color:green" class="mui-col-sm-4" >112.00</div><div style="float: left;text-align:right" class="mui-col-sm-4" >元/斤</div><div style="clear: both;"></div></h5>
+					</div>
+				</div>
+				<div class="mui-col-sm-2 mui-col-xs-4">
+					<div class="img11">
+					<img src="css/1114.png" class="img11one">
+					<h5 class="img11text mui-row"><div style="float: left; text-align: left;padding-left:2%" class="mui-col-sm-4" >草莓</div><div style="float: left;font-size:1.25rem;color:green" class="mui-col-sm-4" >112.00</div><div style="float: left;text-align:right" class="mui-col-sm-4" >元/斤</div><div style="clear: both;"></div></h5>
+					</div>
+				</div>
+				<div class="mui-col-sm-2 mui-col-xs-4">
+					<div class="img11">
+					<img src="css/1114.png" class="img11one">
+					<h5 class="img11text mui-row"><div style="float: left; text-align: left;padding-left:2%" class="mui-col-sm-4" >草莓</div><div style="float: left;font-size:1.25rem;color:green" class="mui-col-sm-4" >112.00</div><div style="float: left;text-align:right" class="mui-col-sm-4" >元/斤</div><div style="clear: both;"></div></h5>
+					</div>
+				</div>
+				<div class="mui-col-sm-2 mui-col-xs-4">
+					<div class="img11">
+					<img src="css/1114.png" class="img11one">
+					<h5 class="img11text mui-row"><div style="float: left; text-align: left;padding-left:2%" class="mui-col-sm-4" >草莓</div><div style="float: left;font-size:1.25rem;color:green" class="mui-col-sm-4" >112.00</div><div style="float: left;text-align:right" class="mui-col-sm-4" >元/斤</div><div style="clear: both;"></div></h5>
+					</div>
+				</div>
+				<div class="mui-col-sm-2 mui-col-xs-4">
+					<div class="img11">
+					<img src="css/1114.png" class="img11one">
+					<h5 class="img11text mui-row"><div style="float: left; text-align: left;padding-left:2%" class="mui-col-sm-4" >草莓</div><div style="float: left;font-size:1.25rem;color:green" class="mui-col-sm-4" >112.00</div><div style="float: left;text-align:right" class="mui-col-sm-4" >元/斤</div><div style="clear: both;"></div></h5>
+					</div>
+				</div>
+				<div class="mui-col-sm-2 mui-col-xs-4">
+					<div class="img11">
+					<img src="css/1114.png" class="img11one">
+					<h5 class="img11text mui-row"><div style="float: left; text-align: left;padding-left:2%" class="mui-col-sm-4" >草莓</div><div style="float: left;font-size:1.25rem;color:green" class="mui-col-sm-4" >112.00</div><div style="float: left;text-align:right" class="mui-col-sm-4" >元/斤</div><div style="clear: both;"></div></h5>
+					</div>
+				</div>
+				<div class="mui-col-sm-2 mui-col-xs-4">
+					<div class="img11">
+					<img src="css/1114.png" class="img11one">
+					<h5 class="img11text mui-row"><div style="float: left; text-align: left;padding-left:2%" class="mui-col-sm-4" >草莓</div><div style="float: left;font-size:1.25rem;color:green" class="mui-col-sm-4" >112.00</div><div style="float: left;text-align:right" class="mui-col-sm-4" >元/斤</div><div style="clear: both;"></div></h5>
+					</div>
+				</div>
+				<div class="mui-col-sm-2 mui-col-xs-4">
+					<div class="img11">
+					<img src="css/1114.png" class="img11one">
+					<h5 class="img11text mui-row"><div style="float: left; text-align: left;padding-left:2%" class="mui-col-sm-4" >草莓</div><div style="float: left;font-size:1.25rem;color:green" class="mui-col-sm-4" >112.00</div><div style="float: left;text-align:right" class="mui-col-sm-4" >元/斤</div><div style="clear: both;"></div></h5>
+					</div>
+				</div>
+				<div class="mui-col-sm-2 mui-col-xs-4">
+					<div class="img11">
+					<img src="css/1114.png" class="img11one">
+					<h5 class="img11text mui-row"><div style="float: left; text-align: left;padding-left:2%" class="mui-col-sm-4" >草莓</div><div style="float: left;font-size:1.25rem;color:green" class="mui-col-sm-4" >112.00</div><div style="float: left;text-align:right" class="mui-col-sm-4" >元/斤</div><div style="clear: both;"></div></h5>
+					</div>
+				</div>
+				<div class="mui-col-sm-2 mui-col-xs-4">
+					<div class="img11">
+					<img src="css/1114.png" class="img11one">
+					<h5 class="img11text mui-row"><div style="float: left; text-align: left;padding-left:2%" class="mui-col-sm-4" >草莓</div><div style="float: left;font-size:1.25rem;color:green" class="mui-col-sm-4" >112.00</div><div style="float: left;text-align:right" class="mui-col-sm-4" >元/斤</div><div style="clear: both;"></div></h5>
+					</div>
+				</div>
+				
+				
+				
+				
+			</div>
+			
+			
+		</div>
+
+		
+		
+		
+		</div>	
+</body>
+
+
+<script>
+	
+	mui.plusReady(function(){
+		
+		
+		
+		var mainActivity = plus.android.runtimeMainActivity();
+		var Settings = plus.android.importClass("android.provider.Settings");
+		plus.navigator.setFullscreen(true);
+		
+		//获取uuid
+		plus.device.getInfo({  
+			   success:function(e){  
+					//弹框uuid
+					//alert(e.uuid);  
+
+				},  
+				fail:function(){  
+					 showMsg("获取硬件标识失败，请同意软件获取设备信息后重新打开应用");  
+			   }  
+		 });
+				
+		
+		function getXYbyIP() {
+		var url="https://api.map.baidu.com/location/ip?ak=HQi0eHpVOLlRuIFlsTZNGlYvqLO56un3&coor=bd09ll";
+	    mui.getJSON(url,function (data1) {
+		        //console.log(data)
+				//alert(data1.content.address_detail.city);
+				
+				mui.getJSON('http://api.map.baidu.com/telematics/v3/weather?location=' +data1.content.address_detail.city+ '&output=json&ak=z3hc18DC7zkuwqEWpWsEkZAi', {category: 'news'},
+				 function(data1) {
+									
+								// console.log(JSON.stringify(data1));
+								
+								
+								var header = document.getElementById("header");
+								var message = document.getElementById("message");
+								var img = document.getElementById("img");
+								var imgtext1 = document.getElementById("imgtext1");
+								var img2 = document.getElementById("img2");
+								var imgtext2 = document.getElementById("imgtext2");
+								
+								header.innerHTML = data1.results[0].currentCity;
+								console.log(data1.results[0].weather_data[0].date);
+								img.src = data1.results[0].weather_data[0].dayPictureUrl;
+								imgtext1.innerHTML = data1.results[0].weather_data[0].weather;
+								img2.src = data1.results[0].weather_data[1].dayPictureUrl;
+								imgtext2.innerHTML = data1.results[0].weather_data[1].weather;
+								
+								message.innerHTML =data1.results[0].weather_data[0].temperature;
+								
+								 
+							},function(e){
+								
+							});
+				
+		        
+		    },function (data) {
+		    }
+		);
+		}
+		
+		
+		//下载图片到本地
+		var imageUrl = "http://129.204.214.141/uploadImages/1592187829875.jpg";
+		var imgDtask = plus.downloader.createDownload(imageUrl,{method:'GET'}, function (d,status) {
+				if(status == 200){
+					//plus.gallery.save(d.filename, function () {//保存到相册
+						//alert(d.filename)
+						plus.io.resolveLocalFileSystemURL(d.filename, function (enpty) {
+						   localStorage.setItem("img2",enpty.toLocalURL());
+						   //alert(enpty.toLocalURL());
+					
+							
+							//mui.toast('保存成功')
+						});
+		
+					//})
+				}else{
+					mui.toast('保存失败')
+				}
+		});
+		imgDtask.start()
+		
+		
+		
+		
+		
+		//读取本地文件
+		var img1 = document.getElementById("img1");
+		plus.io.resolveLocalFileSystemURL(localStorage.getItem("img2"), function(entry1) {  
+			var path = entry1.toLocalURL();  
+			img1.src  = path;
+		}, function(e) {  
+			mui.toast("读取拍照文件错误：" + e.message);  
+		});  
+		//结束
+		
+		var ttsText="草莓12.50元/斤,西瓜2.30元/斤,香蕉3.00元/斤,火龙果12.00元/斤";
+		
+		
+		// var audio = document.createElement("audio");  
+		// audio.src = 'http://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&per=3&spd=3&text=' + ttsText +"'";  
+		// audio.play(); 
+		
+		//ttsText="test1";
+	//	var sound1 = 'http://tts.baidu.com/text2audio.mp3?lan=zh&ie=UTF-8&per=3&spd=3&text=' + ttsText;
+		
+		sound1='http://129.204.214.141/uploadImages/text2audio1.mp3';
+		
+		
+		
+		//alert(sound1);
+		
+		var name="text2audio.mp3";
+		var imgDtask1 = plus.downloader.createDownload(sound1,{method:'GET'}, function (d,status) {
+			   // alert(d.filename);
+				if(status == 200){
+					
+					//plus.gallery.save(d.filename, function () {//保存到相册
+						
+						plus.io.resolveLocalFileSystemURL(d.filename, function (enpty) {
+						  // localStorage.setItem("img2",enpty.toLocalURL());
+						  // alert(enpty.toLocalURL());
+						   
+						   
+						   var audio = document.createElement("audio");
+						   audio.src = enpty.toLocalURL();  
+						   audio.play(); 
+					
+						   
+						   // 打开本地路径的图片
+							// var img1 = document.getElementById("img1");
+							// plus.io.resolveLocalFileSystemURL(enpty.toLocalURL(), function(entry1) {  
+							// 	var path = entry1.toLocalURL();  
+							// 	img1.src  = path;
+							// }, function(e) {  
+							// 	mui.toast("读取拍照文件错误：" + e.message);  
+							// });  
+							//结束
+							
+							
+							
+							
+							//mui.toast('保存成功q')
+						}, function(e) {  
+								alert("读取拍照文件错误：" + e.message);  
+						});
+		
+					
+				}else{
+					alert('保存失败');
+				}
+		});
+		imgDtask1.start()
+		
+		
+		
+	// 	s = plus.audio.createPlayer( 'http://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&per=3&spd=3&text=' + ttsText +"'");
+	// 	var num = s.getDuration();//获取音频总长度number
+	
+	 
+	// 	s.play( function () {//播放完成回调
+	// 	    alert( "Audio play success!" ); 
+	// 	}, function ( e ) {//失败回调
+	// 	    alert( "Audio play error: " + e.message ); 
+	// 	} ); 		
+	
+	
+		
+		
+		
+		
+		getXYbyIP();
+		setInterval(function(){getXYbyIP();},7200000);
+		
+		
+		
+		
+		
+		
+		
+		//plus.geolocation.getCurrentPosition(function(p) {
+			//alert(p.coords.longitude);
+		 //获取天气接口
+		   
+		//});
+		
+			 
+		
+	});
+	
+	
+	
+	
+	
+	function getDate(){
+	
+	   var myDate = new Date();
+	
+		//获取当前年
+	   var year = myDate.getFullYear();
+	
+	   //获取当前月
+	   var month = myDate.getMonth() + 1;
+	
+		//获取当前日
+		var date = myDate.getDate();
+		var h = myDate.getHours(); //获取当前小时数(0-23)
+		var m = myDate.getMinutes(); //获取当前分钟数(0-59)
+		var s = myDate.getSeconds();
+		
+		var myddy=myDate.getDay();//获取存储当前日期
+		  var weekday=["星期日","星期一","星期二","星期三","星期四","星期五","星期六"];
+		 
+	
+	   //获取当前时间
+	
+	   var now = year + '-' + conver(month) + "-" + conver(date) + " " + conver(h) + ':' + conver(m) + ":" + conver(s);
+	   
+	   document.getElementById("time").innerHTML =weekday[myddy]+" "+ now;
+	   
+	
+	}
+	
+		//日期时间处理
+	function conver(s) {
+		return s < 10 ? '0' + s : s;
+	}
+	
+	setInterval(function(){getDate();},1000);
+	
+	
+	function doTTS() {
+	     var ttsDiv = document.getElementById('bdtts_div_id');
+	    
+	    
+		ttsText="草莓 12.00元/斤  西瓜 2.00元/斤  香蕉 3.00元/斤 火龙果 12.00元/斤 ";
+	     // 文字转语音
+	  
+	     var au1 = '<video id="tts_autio_id" style="display:none" autoplay="autoplay">';
+	     var sss = '<source id="tts_source_id" style="display:none" src="http://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&per=3&spd=3&text=' + ttsText + '" type="audio/mpeg">';
+	     var eee = '<embed id="tts_embed_id" style="display:none" height="0" width="0" src="">';
+	     var au2 = '</video>';
+	     //ttsDiv.innerHTML = au1 + sss + eee + au2;
+	
+	   //  ttsAudio = document.getElementById('tts_autio_id');
+	
+	 //    ttsAudio.play();
+		 
+		 
+		 s = plus.audio.createPlayer( 'http://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&per=3&spd=3&text=' + ttsText +"'");
+		     var num = s.getDuration();//获取音频总长度number
+		     // setTimeout(function(){//延时获取，否则可能没有返回长度
+		     //     var num = s.getDuration();
+		     //     alert(num)
+		     // },100)
+		  
+		     s.play( function () {//播放完成回调
+		        // alert( "Audio play success!" ); 
+		     }, function ( e ) {//失败回调
+		        // alert( "Audio play error: " + e.message ); 
+		     } ); 
+		 
+			}
+			
+			
+	
+	//doTTS();
+	
+		
+		
+
+</script>
+</html>
